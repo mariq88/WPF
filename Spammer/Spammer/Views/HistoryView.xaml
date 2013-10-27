@@ -1,0 +1,90 @@
+﻿<UserControl x:Class="Spammer.Views.HistoryView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="480" d:DesignWidth="640">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button Grid.Row="0" Width="150" Height="25" Margin="5" Command="{Binding ChartButton}">Show Chart</Button>
+            <Button Grid.Row="0" Width="150" Height="25" Margin="5" Command="{Binding SendNewEmailButton}">Send New E-Mail</Button>
+            <Button Grid.Row="0" Width="150" Height="25" Margin="5" Command="{Binding LogoutButton}">Logout</Button>
+        </WrapPanel>
+
+        <TreeView Grid.Row="1" ItemsSource="{Binding MailsHistory}">
+            <TreeView.ItemTemplate>
+                <DataTemplate>
+                    <TreeViewItem>
+                        <TreeViewItem.Header>
+                            <TextBlock Foreground="Yellow">
+                                <TextBlock LineHeight="16" VerticalAlignment="Center" 
+                                           FontSize="12"
+                                           Text="{Binding SendDate}" />
+                                <TextBlock Foreground="Orange" FontWeight="Bold">→</TextBlock>
+                                <TextBlock FontWeight="Bold" Text="{Binding Subject}" TextWrapping="WrapWithOverflow"/>
+                            </TextBlock>
+                        </TreeViewItem.Header>
+                        <Grid VerticalAlignment="Top">
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="70" />
+                                <ColumnDefinition Width="450" />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Row="0" Grid.Column="0" TextAlignment="Left" FontSize="12" Foreground="White"
+                               FontWeight="Bold">Recipients:</TextBlock>
+                            <TextBlock Grid.Row="0" Grid.Column="1" TextAlignment="Left" FontSize="12" Foreground="White"
+                               TextWrapping="Wrap" Text="{Binding Recipients}" />
+                            <TextBlock Grid.Row="1" Grid.Column="0" TextAlignment="Left" FontSize="12" Foreground="White"
+                               FontWeight="Bold">Content:</TextBlock>
+                            <TextBlock Grid.Row="1" Grid.Column="1" TextAlignment="Left" FontSize="12" Foreground="White"
+                               TextWrapping="Wrap" Text="{Binding Content}" />
+                        </Grid>
+                    </TreeViewItem>
+                </DataTemplate>
+            </TreeView.ItemTemplate>
+        </TreeView>
+
+        <!--<TreeView Grid.Row="1">
+            <TreeViewItem>
+                <TreeViewItem.Header>
+                    <TextBlock Foreground="DarkCyan">
+                        <TextBlock LineHeight="16" VerticalAlignment="Center" 
+                                   FontSize="12"
+                                   Text="14.09.2013 (15:10:33)" />
+                        <TextBlock Foreground="Red" FontWeight="Bold">→</TextBlock>
+                        <TextBlock FontWeight="Bold" Text="Subject of message" />
+                    </TextBlock>
+                </TreeViewItem.Header>
+                <Grid VerticalAlignment="Top" Margin="0,0,0,10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="70" />
+                        <ColumnDefinition Width="480" />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Row="0" Grid.Column="0" TextAlignment="Left" FontSize="12" Foreground="White"
+                               FontWeight="Bold">Recipients: </TextBlock>
+                    <TextBlock Grid.Row="0" Grid.Column="1" TextAlignment="Left" FontSize="12" Foreground="White"
+                               TextWrapping="Wrap">Bacho.Kiko@gmail.com, Ceko.Sifonq@abv.bg, doncho@minkov.it, Ceko.Sifonq@abv.bg, doncho@minkov.it, Bacho.Kiko@gmail.com, Ceko.Sifonq@abv.bg, doncho@minkov.it, Ceko.Sifonq@abv.bg, doncho@minkov.it</TextBlock>
+                    <TextBlock Grid.Row="1" Grid.Column="0" TextAlignment="Left" FontSize="12"  Foreground="White"
+                               FontWeight="Bold">Content:</TextBlock>
+                    <TextBlock Grid.Row="1" Grid.Column="1" TextAlignment="Left" FontSize="12" Foreground="White"
+                               TextWrapping="Wrap">This is the content of the uber cool spam mail, sent using waterMAILon spam sender. Congratulations!</TextBlock>
+                </Grid>
+            </TreeViewItem>
+        </TreeView>-->
+    </Grid>
+</UserControl>

@@ -1,0 +1,37 @@
+﻿<UserControl x:Class="Spammer.Views.ChartView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"       
+        xmlns:chartingToolkit="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+        xmlns:local ="clr-namespace:Spammer.ViewModels"
+        MinHeight="480"
+        MinWidth="640"
+        Height="Auto" Width="Auto"
+        >
+    <UserControl.Resources>
+        <Style TargetType="chartingToolkit:Chart">
+            <Setter Property="Margin" Value="1,1,-110,40"></Setter>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <WrapPanel  Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button Width="150" Height="25" Margin="5"
+                Command="{Binding BackToHistoryButton}">Back To History</Button>
+            <TextBox Name="NewValue" Width="25" Height="25" Margin="5" TextAlignment="Center" Text="15" />
+            <Button Width="150" Height="25" Margin="5"
+                Command="{Binding SelectNewValueButton}" CommandParameter="{Binding ElementName=NewValue}">Select New Value</Button>
+        </WrapPanel>
+        <chartingToolkit:Chart Grid.Row="1">
+            <chartingToolkit:ColumnSeries
+                x:Name="ColumnSeries"
+                DataContext="{Binding}"
+                DependentValueBinding="{Binding Path=Value}"                 
+                IndependentValueBinding="{Binding Path=Key}" 
+                ItemsSource="{Binding Path=Data}"
+                />
+        </chartingToolkit:Chart>
+    </Grid>
+</UserControl>
